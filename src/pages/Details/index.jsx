@@ -4,7 +4,8 @@ import { Header } from "../../components/Header"
 import { Section } from "../../components/Section"
 import { Tag } from "../../components/Tag"
 import { ButtonText } from "../../components/ButtonText"
-function Details() {
+
+export function Details() {
   return (
     // Fragment == <>
     // <Fragment>  
