@@ -19,11 +19,13 @@ export const Container = styled.header`
 export const Profile = styled(Link)`
     display: flex;
     align-items: center;
+    overflow: hidden;
 
     > img {
         width: 3.5rem;
         height: 3.5rem;
         border-radius: 50%;
+        object-fit: cover;
     }
 
     > div {
