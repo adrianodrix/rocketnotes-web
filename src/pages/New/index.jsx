@@ -6,8 +6,21 @@ import { Section } from '../../components/Section'
 import { TextArea } from '../../components/TextArea'
 import { Button } from '../../components/Button'
 import { Container, Form } from './styles'
+import { useState } from 'react'
 
 export function New() {
+  const [links, setLinks] = useState([])
+  const [newLink, setNewLink] = useState('')
+
+  function handleAddLink() {
+    setLinks(prevState => [...prevState, newLink])
+    setNewLink('')
+  }
+
+  function handleRemoveLink(deleted) {
+    setLinks(prevState => prevState.filter(link => link !== deleted))
+  }
+
   return (
     <Container>
       <Header />
@@ -23,8 +36,22 @@ export function New() {
             <TextArea placeholder='Comments' />
 
             <Section title='Useful links'>
-              <NoteItem value='http://github.com/adrianodrix' />
-              <NoteItem isNew placeholder='New item' />
+              {
+                links.map((link, index) => (
+                  <NoteItem 
+                    key={String(index)}
+                    value={link}
+                    onClick={(e) => handleRemoveLink(link)}
+                  />
+                ))
+              }
+              <NoteItem 
+                isNew 
+                placeholder='New item' 
+                value={newLink}
+                onChange={e => setNewLink(e.target.value)}
+                onClick={handleAddLink}
+              />
             </Section>
 
             <Section title='Markers'>
